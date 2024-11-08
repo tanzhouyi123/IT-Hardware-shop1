@@ -10,7 +10,7 @@ import { Toaster } from "@/components/ui/sonner"
 import Link from 'next/link'
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
-import { ShoppingCart, Search, Menu, ClipboardList, User, Moon, Sun } from "lucide-react"
+import { Wrench, ShoppingCart, Search, Menu, ClipboardList, User, Moon, Sun } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -88,8 +88,8 @@ export default function RootLayout({
         <div className="container min-w-full flex h-14 items-center px-6">
           <div className="mr-4 hidden md:flex">
             <Link className="mr-6 flex items-center space-x-2" href="/">
-              <ShoppingCart className="h-6 w-6" />
-              <span className="hidden font-bold sm:inline-block">IT Hardware Shop</span>
+              <Wrench className="h-5 w-5" />
+              <span className="hidden font-bold sm:inline-block">Ngoh Kim Tiam</span>
             </Link>
             <nav className="flex items-center space-x-6 text-sm font-medium">
               <Link href="/">Products</Link>

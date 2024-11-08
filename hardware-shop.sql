@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 27, 2024 at 04:40 PM
--- Server version: 10.4.27-MariaDB
--- PHP Version: 7.4.33
+-- Generation Time: Nov 08, 2024 at 02:56 PM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,8 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `hardware-shop`
 --
-CREATE DATABASE IF NOT EXISTS `hardware-shop` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE `hardware-shop`;
 
 -- --------------------------------------------------------
 
@@ -62,13 +60,10 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`order_id`, `user_id`, `product_id`, `price`, `quantity`, `shipping_fee`, `total_amount`, `status`, `updated_at`, `created_at`) VALUES
-(1, 3, 1, 650.5, 1, 0, 650.5, 'Pending', '2024-10-21 00:44:21', '2024-08-21 00:44:21'),
-(2, 3, 4, 490, 1, 0, 490, 'Shipping', '2024-10-21 00:48:14', '2024-09-22 00:48:14'),
-(3, 3, 3, 490, 4, 0, 1960, 'Fulfilled', '2024-10-21 00:48:46', '2024-10-23 00:48:46'),
-(4, 4, 3, 550, 2, 0, 1100, 'Fulfilled', '2024-10-21 00:49:43', '2024-10-25 00:49:43'),
-(5, 4, 4, 490, 1, 0, 490, 'Shipping', '2024-10-21 12:28:12', '2024-10-27 12:28:12'),
-(6, 4, 5, 650, 2, 0, 1300, 'Shipping', '2024-10-27 22:44:23', '2024-10-27 22:44:23'),
-(7, 4, 1, 850.5, 2, 0, 1701, 'Pending', '2024-10-27 22:55:30', '2024-10-27 22:55:30');
+(1, 5, 1, 11.9, 2, 0, 23.8, 'Fulfilled', '2024-11-08 03:13:02', '2024-11-08 03:13:02'),
+(2, 5, 2, 2.3, 10, 0, 23, 'Shipping', '2024-11-08 03:18:20', '2024-11-08 03:18:20'),
+(3, 5, 2, 2.3, 20, 0, 46, 'Refund', '2024-11-08 18:40:57', '2024-11-08 18:40:57'),
+(4, 5, 3, 10, 1, 0, 10, 'Pending', '2024-11-08 18:40:57', '2024-11-08 18:40:57');
 
 -- --------------------------------------------------------
 
@@ -94,11 +89,10 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`product_id`, `name`, `description`, `price`, `stock`, `category`, `cover`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'Intel CPU i7', 'Powerful Intel i7 CPU', 850.5, 18, 'CPU', '/uploads/1730011411450_intel-i7.webp', '2024-10-14 23:03:09', '2024-10-14 23:03:09', NULL),
-(2, 'Intel CPU i5', 'Powerful i5 CPU', 450, 20, 'CPU', '/uploads/1730012016325_intel-i5.jpg', '2024-10-14 23:05:27', '2024-10-14 23:05:27', '2024-10-27 22:32:36'),
-(3, 'AMD CPU R7', 'Powerful R7 CPU', 550, 20, 'CPU', '/uploads/1730012083523_AMD-R7.jpg', '2024-10-14 23:07:21', '2024-10-14 23:07:21', NULL),
-(4, 'AMD CPU R5', 'Powerful R5 CPU', 490, 0, 'CPU', '/uploads/1730012103028_AMD-R5.jpg', '2024-10-14 23:07:59', '2024-10-14 23:07:59', NULL),
-(5, 'Adata DDR4 3200 RAM (32GB)', 'DDR4 offers multiple advantages over previous DRAM generations, and ADATA provides the highest quality and the fastest performance. Our Premier DDR4 3200 SO-DIMM memory modules for notebooks arrive in convenient 8GB to 32GB for instant upgrades on any compatible notebook. They deliver faster data transfers than DDR3, coupled with lower energy consumption that reduces heat and extends battery life. Our DDR4 is also optimized to unlock the power of the newest Intel/AMD processors.', 650, 28, 'RAM', '/uploads/1730012803038_Adata-ddr4-3200-32GB.png', '2024-10-27 15:06:43', '2024-10-27 15:06:43', NULL);
+(1, 'Hammer', 'Good Quality Hammer for home use', 11.9, 18, 'Supplies', '/uploads/1731005813882_Hammer.jpg', '2024-11-08 02:56:53', '2024-11-08 02:56:53', NULL),
+(2, 'Screw', 'Strong Holder Screw', 2.3, 970, 'Supplies', '/uploads/1731005912181_38955f5c-e279-47cb-9235-aac9958a3b3d__77740.jpg', '2024-11-08 02:58:32', '2024-11-08 02:58:32', NULL),
+(3, 'Screw Driver', 'Stankey Screw Drew', 10, 99, 'ScrewDriver', '/uploads/1731006227124_OIP.jpeg', '2024-11-08 03:03:47', '2024-11-08 03:03:47', NULL),
+(92, 'Nippon Paint', 'Nippon Paint 9000 Gloss Finish', 120, 20, 'Paint', '/uploads/1731006674537_nippon_paint_9000-2-1200x1200.jpg', '2024-11-08 03:11:14', '2024-11-08 03:11:14', NULL);
 
 -- --------------------------------------------------------
 
@@ -122,7 +116,10 @@ CREATE TABLE `reviews` (
 
 INSERT INTO `reviews` (`review_id`, `order_id`, `rating`, `comment`, `admin_reply`, `created_at`, `updated_at`) VALUES
 (3, 2, 3, 'Nice Product', 'Thanks Your Review 👍', '2024-10-22 01:11:01', '2024-10-22 01:22:11'),
-(4, 3, 4, 'Good', NULL, '2024-10-22 01:25:39', '2024-10-22 01:34:08');
+(4, 3, 4, 'Good', 'thanks', '2024-10-22 01:25:39', '2024-10-22 01:34:08'),
+(5, 9, 5, '1111111', NULL, '2024-10-30 11:12:48', '2024-11-04 17:20:36'),
+(6, 13, 1, 'Fake thor hammer', 'good', '2024-10-30 11:22:35', '2024-10-30 11:22:35'),
+(7, 1, 4, 'Good hammer buy two sharing with my family', NULL, '2024-11-08 03:18:40', '2024-11-08 03:18:40');
 
 -- --------------------------------------------------------
 
@@ -149,7 +146,15 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`user_id`, `first_name`, `last_name`, `phone_number`, `email`, `password`, `role`, `created_at`, `updated_at`) VALUES
 (1, 'Admin', 'Admin', '0125567894', 'admin@gmail.com', 'Admin@1234', 'Admin', '2024-10-14 00:00:00', '2024-10-14 00:00:00'),
 (3, 'Tomas', 'Tan', '0125647156', 'tomas.tan@gmail.com', 'Tomas@1234', 'User', '2024-10-14 21:02:31', '2024-10-14 21:02:31'),
-(4, 'James', 'Bond', '0123456789', 'james.bond@gmail.com', 'James@1234', 'User', '2024-10-24 00:28:38', '2024-10-24 00:28:38');
+(4, 'James', 'Bond', '0123456789', 'james.bond@gmail.com', 'James@1234', 'User', '2024-10-24 00:28:38', '2024-10-24 00:28:38'),
+(5, 'Zhou Yi', 'Tan', '0125903398', 'tanzhouyi123@gmail.com', 'Yi_3301999', 'User', '2024-10-28 15:59:34', '2024-10-28 15:59:34'),
+(6, 'Luffy', 'Monkey', '0125903398', 'TANZHOUYI456@GMAIL.COM', 'Zxcv\"1234', 'User', '2024-11-04 17:23:34', '2024-11-04 17:23:34'),
+(7, 'Handsome', 'Tan', '0123456789', 'handsome@mail.com', 'Yeaaa_123456', 'User', '2024-11-04 17:32:35', '2024-11-04 17:32:35'),
+(8, 'wee', 'Bryan', '0177577978', 'byranwee@mail.com', 'Wee_1234', 'User', '2024-11-04 17:34:03', '2024-11-04 17:34:03'),
+(9, 'Mia', 'Khalifa', '0129915571', 'happy@mail.com', 'Happy_1234', 'User', '2024-11-04 17:53:54', '2024-11-04 17:53:54'),
+(10, 'Happy', 'Polla', '0145778921', 'pollaisgood@mail.com', 'Polla_1234', 'User', '2024-11-04 18:01:07', '2024-11-04 18:01:07'),
+(11, 'Adeline ', 'Chang', '0154789257', 'adelinechang@mail.com', 'Adeline_123', 'User', '2024-11-04 18:11:35', '2024-11-04 18:11:35'),
+(12, 'Alice ', 'Chang', '0123456789', 'datobaby@gmail.com', 'Dato_123', 'User', '2024-11-04 18:19:40', '2024-11-04 18:19:40');
 
 --
 -- Indexes for dumped tables
@@ -193,31 +198,31 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `carts`
 --
 ALTER TABLE `carts`
-  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=93;
 
 --
 -- AUTO_INCREMENT for table `reviews`
 --
 ALTER TABLE `reviews`
-  MODIFY `review_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `review_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

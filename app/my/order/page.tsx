@@ -194,7 +194,7 @@ export default function MyOrder() {
                     <p className="text-sm text-muted-foreground lg:max-w-screen-lg line-clamp-3">{item.description}</p>
                     <h2 className="text-2xl font-bold">RM {item.price.toFixed(2)}</h2>
                     <div className="flex justify-between items-center">
-                        <div className="content-center text-lg">Total 1 item(s): <span className="text-xl font-bold">RM {(item.price * item.quantity).toFixed(2)}</span></div>
+                        <div className="content-center text-lg">Total {item.quantity} item(s): <span className="text-xl font-bold">RM {(item.price * item.quantity).toFixed(2)}</span></div>
                         {item.status === 'Fulfilled' && <ReviewBtn />}
                     </div>
                 </CardContent>
